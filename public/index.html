@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link type="text/css" href="/jquery-ui-1.8.6.custom.css" rel="stylesheet" />	
+	<script src="jquery-1.4.4.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="jquery-ui-1.8.6.custom.min.js"></script>
+	<script src="client.js" type="text/javascript"></script>
+    <style>
+		.board { width: 500px; float: left; padding: 1em; margin:0.5em;}
+		.board-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em; }
+		.cell { width:150px; margin:5px; float:left; border: 1px dotted white; }
+		.user { align: center; }
+		.users { width:150; float: left; padding:1em;margin:0.5em;}
+		.users-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em; }
+		.users-content { padding: 0.4em; }
+		.log { width:150; float: left; padding:1em;margin:0.5em;}
+		.log-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em; }
+		.log-content { padding: 0.4em; }
+		.welcome { width:400; float: left; }
+		.welcom-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em; }
+		.welcome-content { padding: 0.4em; }
+		.ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 50px !important; }
+		.ui-sortable-placeholder * { visibility: hidden; }
+		</style>
+		<script>
+			$(function() {
+				$( ".users" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+					.find( ".users-header" )
+						.addClass( "ui-widget-header ui-corner-all" )
+						.end()
+					.find( ".users-content" );
+
+					$( ".welcome" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+						.find( ".welcome-header" )
+							.addClass( "ui-widget-header ui-corner-all" )
+							.end()
+						.find( ".welcome-content" );
+						
+						$( ".log" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+							.find( ".log-header" )
+								.addClass( "ui-widget-header ui-corner-all" )
+								.end()
+							.find( ".log-content" );
+
+					$( ".board" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+					.find( ".board-header" )
+						.addClass( "ui-widget-header ui-corner-all" )
+						.end()
+					    .find(".cell").addClass( "ui-widget-content ui-corner-all" );
+					
+					// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
+					$( "#dialog:ui-dialog" ).dialog( "destroy" );
+
+					$( "#dialog-message" ).dialog({
+						autoOpen: false,
+						modal: true,
+						buttons: {
+							Ok: function() {
+								$( this ).dialog( "close" );
+							}
+						}
+					});
+					
+
+			});
+			</script>
+	
+	<title>Tic Tac Node Game</title>
+	<meta name="generator" content="TextMate http://macromates.com/">
+	<meta name="author" content="famille">
+	<!-- Date: 2010-11-18 -->
+</head>
+<body>
+	<div id="dialog-message" title="Information">
+		<p>
+		</p>
+	</div>
+	
+
+	<div id="connect" class="welcome">
+		<Div class="welcome-header">Welcome to Tic Tac Node!</div>
+			<div class="welcome-content">
+				<br>
+			    This is an online multiplayer TicTacToe Game.<BR>
+				Please, enter a nickname to login and play.
+				<br>
+      <form action="#">
+        <fieldset> 
+          <label for="loginInput">Name</label>
+          <input id="loginInput" class="text"type="text" name="loginInput" value=""/>
+          <input id="loginButton" class="button" type="submit" name="" value="log me in!"/>
+
+        </fieldset>
+      </form>
+</div>
+    </div>
+
+<div id="game">
+	<div class="board">
+		<div Class="board-header">Game Board</div>
+		<div class="board-content">
+		<div class="cell"><img id="a1" src="filler.png" width="150" height="150"></div>
+		<div class="cell"><img id="a2" src="filler.png" width="150" height="150"></div>
+		<div class="cell"><img id="a3" src="filler.png" width="150" height="150"></div>
+		<div class="cell"><img id="b1" src="filler.png" width="150" height="150"></div>
+		<div class="cell"><img id="b2" src="filler.png" width="150" height="150"></div>
+		<div class="cell"><img id="b3" src="filler.png" width="150" height="150"></div>
+		<div class="cell"><img id="c1" src="filler.png" width="150" height="150"></div>
+		<div class="cell"><img id="c2" src="filler.png" width="150" height="150"></div>
+		<div class="cell"><img id="c3" src="filler.png" width="150" height="150"></div>
+		</div>
+	</div>
+	<div class="users">
+		<div class="users-header">OnLine Users</div>
+		<div id="users-content" class="users-content">
+			<a class="user" href="some/place/on/the/web">XXX</a>
+		</div>
+	</div>
+	<input id="logoutButton" class="button" type="submit" name="" value="log out!"/>
+	<div style="clear:both"></div>
+	<div class="log">
+		<div class="log-header">Messages sent back and forth</div>
+		<div class="log-content" id="log">
+		</div>    
+	</div>
+	</div>
+    
+
+</body>
+</html>
