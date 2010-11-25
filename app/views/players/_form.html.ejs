@@ -1,5 +1,5 @@
 <form id="modelItemForm" method="post" action="<%= params.formAction %>" onsubmit="validateSubmit(); return false;">
-<div><label for="nickName" id="nickName_label">NickName</label></div>
-<div><input type="text" id="nickName" name="nickName" value="<%= params.nickName || '' %>" size="24"/></div>
-<input type="submit" value="Submit"/>
+<label for="nickName" id="nickName_label">NickName</label>
+<input type="text" class="text" id="nickName" name="nickName" value="<%= params.nickName || '' %>" size="24"/>
+<input type="submit" class="button" value="Log me in!"/>
 </form>

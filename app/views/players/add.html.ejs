@@ -1,16 +1,60 @@
+<% params.formAction = '/players'; %>
+<STYLE>
+  .welcome { width:400; float: left; }
+  .welcom-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em; }
+  .welcome-content { padding: 0.4em; }
+</STYLE>
 
-  	<% params.formAction = '/players'; %>
-    <h3>
-      New Player    </h3>
+<SCRIPT>
+  $(function() {
+    $( ".welcome" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+      .find( ".welcome-header" )
+        .addClass( "ui-widget-header ui-corner-all" )
+        .end()
+      .find( ".welcome-content" );
+
+  // a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
+  $( "#dialog:ui-dialog" ).dialog( "destroy" );
+
+  $( "#dialog-message" ).dialog({
     <% if (params.errors) { %>
-    <p>
-      <div>Errors:</div>
-      <% for (var p in params.errors) { %>
-      <div><%=  p %>: <%= params.errors[p] %></div>
-      <% } %>
-    </p>
+    autoOpen: true,
+    <% } else { %>
+    autoOpen: false,
     <% } %>
-    <%= partial('_form', {params: params}); %>
+    modal: true,
+    buttons: {
+      Ok: function() {
+        $( this ).dialog( "close" );
+        }   
+      }
+    });
+  });
+
+</SCRIPT>
+
+<div id="dialog-message" title="Information">
+  <p>
+    <% if (params.errors) { %>
+      <% for (var p in params.errors) { %>
+      <%=  p %>: <%= params.errors[p] %><br>
+      <% } %>
+    <% } %>
+  </p>
+</div>
+
+<div id="connect" class="welcome">
+  <Div class="welcome-header">Welcome to Tic Tac Node!</div>
+    <div class="welcome-content">
+      <br>
+        This is an online multiplayer TicTacToe Game.<BR>
+        Please, enter a nickname to login and play.
+        <br>
+        <%= partial('_form', {params: params}); %>
+    </div>
+  </div>
+</div>
+
     
     <script type="text/javascript" src="/js/util/date.js"></script>
     <script type="text/javascript" src="/js/util/form.js"></script>

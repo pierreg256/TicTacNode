@@ -16,9 +16,11 @@ var Players = function () {
   };
 
   this.create = function (params) {
-    log.debug(params['nickName']);
-    log.debug(lesJoueurs[params['nickName']]);
-    log.flush();
+    log.debug(params['nickName']).flush();
+    log.debug(lesJoueurs[params['nickName']]).flush();
+    log.debug(_this.session.sid).flush();
+
+    log.debug(lesJoueurs);
 
     if (lesJoueurs[params['nickName']] == null)
     {
@@ -31,6 +33,7 @@ var Players = function () {
       else
       {
          item.messages = [];
+         _this.session.set('player', item);
          lesJoueurs[params['nickName']] = item;
          this.redirect('/gameboard');
       }
@@ -84,10 +87,22 @@ var Players = function () {
   };
 
   this.remove = function (params) {
+    log.debug(_this.session.sid).flush();
+    log.debug(_this.session.get('player')).flush();
+
+    log.debug('deleting player from players list').flush();
+    delete lesJoueurs[_this.session.get('player').nickName]; 
+    log.debug(lesJoueurs);
+    log.debug('sanitizing session').flush();
+    _this.session.unset('player');// = null;
+    log.debug('redirecting...').flush();
+/*
     Player.remove(params.id, function (err, items) {
       if (err) throw err;
       _this.redirect({controller: _this.name});
     });
+*/
+    _this.redirect('/');
   };
 
 };

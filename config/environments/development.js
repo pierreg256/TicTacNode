@@ -24,6 +24,7 @@ var config = new function () {
     store: 'memory'
     , key: 'sid'
     , expiry: 14 * 24 * 60 * 60
+    //, expiry: 2 * 60
   };
   /* SQLite
   this.database = {

@@ -20,8 +20,15 @@ var Main = function () {
   this.respondsWith = ['html'];
 
   this.index = function (params) {
+    log.debug(this.session.sid).flush();
+    log.debug(this.session.get('player')).flush();
     //this.respond({params: params});
-    this.respond('Welcom to tic tac node');
+
+    if (this.session.get('player') == null)
+      this.redirect("/login");
+    else
+      this.redirect("/gameborad");
+
   };
 };
 
