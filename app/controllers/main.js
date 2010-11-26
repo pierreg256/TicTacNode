@@ -27,7 +27,7 @@ var Main = function () {
     if (this.session.get('player') == null)
       this.redirect("/login");
     else
-      this.redirect("/gameborad");
+      this.redirect("/gameborads");
 
   };
 };

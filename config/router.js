@@ -37,5 +37,9 @@ router.match('/logout').to({controller: 'Players', action: 'remove'});
 
 router.resource('users');
 router.resource('players');
+router.match('/gameboards').to({controller: 'Gameboards', action: 'index'});
+router.match('/send', 'post').to({controller: 'messages', action: 'send'});
+router.resource('messages');
+
 exports.router = router;
 

@@ -4,11 +4,20 @@ var Players = function () {
   this.respondsWith = ['html', 'json', 'js', 'txt'];
 
   this.index = function (params) {
+/*
     Player.all(function (err, items) {
       if (err) throw err;
-      params.items = items;
-      _this.respond({params: params});
-    });
+*/
+      params.itemsLength = lesJoueurs.length;
+      params.sessionId = _this.session.sid;
+      params.items = [];
+      for (p in lesJoueurs)
+      {
+         params.items.push({nickName: lesJoueurs[p].nickName, 
+                            playing: lesJoueurs[p].isPlaying});
+      }
+      _this.respond({params: params}, 'json');
+//    });
   };
 
   this.add = function (params) {
@@ -33,9 +42,10 @@ var Players = function () {
       else
       {
          item.messages = [];
+         item.isPlaying = false;
          _this.session.set('player', item);
          lesJoueurs[params['nickName']] = item;
-         this.redirect('/gameboard');
+         this.redirect('/gameboards');
       }
     }
     else

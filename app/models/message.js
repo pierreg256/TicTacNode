@@ -1,5 +1,11 @@
 
-var Player = function () {
+var Message = function () {
+  this.property('from', 'string');
+  this.property('to', 'string');
+  this.property('type', 'string');
+  this.property('text', 'string');
+  this.property('items', 'array');
+
   /*
   this.property('login', 'string', {required: true});
   this.property('password', 'string', {required: true});
@@ -21,27 +27,20 @@ var Player = function () {
     // Do some stuff
   };
   */
-  this.property('nickName', 'string', {required: true});
-  this.validatesPresent('nickName');
-  this.validatesFormat('nickName', /[a-z]+/, {message: 'Subdivisions!'});
-  this.validatesLength('nickName', {min: 3});
-
-  this.property('isPlaying', 'boolean');
-  this.property('messages', 'array');
 
 };
 
 /*
 // Can also define them on the prototype
-Player.prototype.someOtherMethod = function () {
+Message.prototype.someOtherMethod = function () {
   // Do some other stuff
 };
 // Can also define static methods and properties
-Player.someStaticMethod = function () {
+Message.someStaticMethod = function () {
   // Do some other stuff
 };
-Player.someStaticProperty = 'YYZ';
+Message.someStaticProperty = 'YYZ';
 */
 
-exports.Player = Player;
+exports.Message = Message;
 

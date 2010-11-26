@@ -1,0 +1,85 @@
+<script type="text/javascript" src="/js/util/date.js"></script>
+<script type="text/javascript" src="/js/util/form.js"></script>
+<script type="text/javascript" src="/js/util/meta.js"></script>
+<script type="text/javascript" src="/js/util/string.js"></script>
+<script type="text/javascript" src="/js/util/url.js"></script>
+<script type="text/javascript" src="/js/models/model.js"></script>
+<script type="text/javascript" src="/js/models/player.js"></script>
+<script type="text/javascript" src="/js/models/message.js"></script>
+ 
+<STYLE>
+  .game { height:600px; width:800px; top:50%; left:50%; position:absolute; margin-left:-400px; margin-top:-300px; border: 1px dotted red }
+
+  .board { width: 500px; float: left; padding: 1em; margin:0.5em;}
+  .board-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em; }
+  .cell { width:150px; margin:5px; float:left; border: 1px dotted white; }
+  .user { align: center; }
+  .users { width:150; float: left; padding:1em;margin:0.5em;}
+  .users-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em; }
+  .users-content { padding: 0.4em; }
+  .log { width:150; float: left; padding:1em;margin:0.5em;}
+  .log-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em; }
+  .log-content { padding: 0.4em; }
+
+</STYLE>
+
+<SCRIPT>
+  $(function() {
+    $( ".board" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+      .find( ".board-header" )
+        .addClass( "ui-widget-header ui-corner-all" )
+        .end()
+      .find(".cell")
+        .addClass( "ui-widget-content ui-corner-all" );
+
+    $( ".users" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+      .find( ".users-header" )
+        .addClass( "ui-widget-header ui-corner-all" )
+        .end()
+      .find( ".users-content" );
+
+    $( ".log" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+      .find( ".log-header" )
+        .addClass( "ui-widget-header ui-corner-all" )
+        .end()
+      .find( ".log-content" );
+
+
+  });
+</SCRIPT>
+
+<div id="game" class="game">
+  <div id="banner">
+    <input id="logoutButton" class="button" type="submit" name="" value="log out!"/>
+  </div>
+  <div class="board">
+    <div Class="board-header">Game Board</div>
+    <div class="board-content">
+      <div class="cell"><img id="a1" src="filler.png" width="150" height="150"></div>
+      <div class="cell"><img id="a2" src="filler.png" width="150" height="150"></div>
+      <div class="cell"><img id="a3" src="filler.png" width="150" height="150"></div>
+      <div class="cell"><img id="b1" src="filler.png" width="150" height="150"></div>
+      <div class="cell"><img id="b2" src="filler.png" width="150" height="150"></div>
+      <div class="cell"><img id="b3" src="filler.png" width="150" height="150"></div>
+      <div class="cell"><img id="c1" src="filler.png" width="150" height="150"></div>
+      <div class="cell"><img id="c2" src="filler.png" width="150" height="150"></div>
+      <div class="cell"><img id="c3" src="filler.png" width="150" height="150"></div>
+    </div>
+  </div>
+
+  <div class="users">
+    <div class="users-header">OnLine Users</div>
+    <div id="users-content" class="users-content">
+      <a class="user" href="some/place/on/the/web">XXX</a>
+    </div>
+  </div>
+
+  <div style="clear:both"></div>
+
+  <div class="log">
+    <div class="log-header">Messages sent back and forth</div>
+    <div class="log-content" id="log">
+    </div>    
+  </div>
+</div>
+
